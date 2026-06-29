@@ -24,12 +24,19 @@ class MembreBureauAdmin(admin.ModelAdmin):
 
 @admin.register(BilanAnnuel)
 class BilanAnnuelAdmin(admin.ModelAdmin):
-    list_display = ['annee', 'total_recettes', 'total_depenses', 'bilan', 'total_avoirs']
+    list_display = ['annee', 'get_recettes', 'get_depenses', 'get_bilan', 'get_avoirs']
 
-    def total_recettes(self, obj): return f"{obj.total_recettes}€"
-    def total_depenses(self, obj): return f"{obj.total_depenses}€"
-    def bilan(self, obj): return f"{obj.bilan}€"
-    def total_avoirs(self, obj): return f"{obj.total_avoirs}€"
+    def get_recettes(self, obj): return f"{obj.total_recettes}€"
+    get_recettes.short_description = "Recettes"
+    
+    def get_depenses(self, obj): return f"{obj.total_depenses}€"
+    get_depenses.short_description = "Dépenses"
+    
+    def get_bilan(self, obj): return f"{obj.bilan}€"
+    get_bilan.short_description = "Bilan"
+    
+    def get_avoirs(self, obj): return f"{obj.total_avoirs}€"
+    get_avoirs.short_description = "Avoirs"
 
 @admin.register(Actualite)
 class ActualiteAdmin(admin.ModelAdmin):
