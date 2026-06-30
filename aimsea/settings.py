@@ -85,3 +85,11 @@ REST_FRAMEWORK = {
 CSRF_TRUSTED_ORIGINS = [
     "https://aims-backend-production-c90c.up.railway.app",
 ]
+# Sécurité production — Railway est derrière un proxy TLS
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SECURE_SSL_REDIRECT = not DEBUG
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = False  # a activer uniquement sur le domaine definitif de l'association
