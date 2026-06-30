@@ -119,7 +119,10 @@ class Actualite(models.Model):
     date = models.DateField(default=timezone.now)
     image = models.ImageField(upload_to='actualites/', null=True, blank=True)
     publie = models.BooleanField(default=True)
-
+    video_url = models.URLField(
+    blank=True, null=True,
+    help_text="Collez ici le lien YouTube de la video (exemple: https://www.youtube.com/watch?v=XXXXXXXXX)"
+)
     class Meta:
         ordering = ['-date']
 

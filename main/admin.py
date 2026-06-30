@@ -40,8 +40,27 @@ class BilanAnnuelAdmin(admin.ModelAdmin):
 
 @admin.register(Actualite)
 class ActualiteAdmin(admin.ModelAdmin):
-    list_display = ['titre', 'date', 'publie']
+    list_display = ['titre', 'date', 'publie', 'a_une_video']
     list_editable = ['publie']
+    fieldsets = (
+        ('Contenu de l\'actualite', {
+            'fields': ('titre', 'date', 'contenu')
+        }),
+        ('Photo (optionnel)', {
+            'fields': ('image',)
+        }),
+        ('Video YouTube (optionnel)', {
+            'fields': ('video_url',),
+            'description': 'Filmez avec votre telephone, uploadez la video sur YouTube, '
+                            'puis collez le lien ici. Le site affichera la video automatiquement.'
+        }),
+        ('Publication', {
+            'fields': ('publie',),
+            'description': 'Cochez cette case quand l\'actualite est prete a etre visible sur le site.'
+        }),
+    )
 
-admin.site.site_header = "Administration AIMSEA-DENKO"
-admin.site.site_title  = "AIMSEA Admin"
+    def a_une_video(self, obj):
+        return bool(obj.video_url)
+    a_une_video.boolean = True
+    a_une_video.short_description = 'Video'

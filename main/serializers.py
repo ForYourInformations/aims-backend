@@ -65,4 +65,4 @@ class BilanAnnuelSerializer(serializers.ModelSerializer):
 class ActualiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Actualite
-        fields = ['id', 'titre', 'contenu', 'date', 'image', 'publie']
+        fields = ['id', 'titre', 'contenu', 'date', 'image', 'video_url', 'publie']
