@@ -27,15 +27,12 @@ class ActionViewSet(viewsets.ReadOnlyModelViewSet):
 # ── Dons ──────────────────────────────────────────────────────────────────────
 class DonViewSet(viewsets.ModelViewSet):
     """
-    GET  /api/dons/     → liste (lecture seule publique)
     POST /api/dons/     → créer un don (formulaire frontend)
+    Lecture, modification et suppression interdites côté public.
     """
     queryset = Don.objects.all()
     serializer_class = DonSerializer
-
-    def get_queryset(self):
-        # N'expose que les dons récents (pas de données sensibles)
-        return Don.objects.all()[:20]
+    http_method_names = ['post', 'head', 'options']
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
