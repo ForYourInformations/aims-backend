@@ -9,9 +9,8 @@ class ActionSerializer(serializers.ModelSerializer):
         model = Action
         fields = [
             'id', 'titre', 'description', 'categorie', 'categorie_label',
-            'date', 'montant', 'nb_beneficiaires', 'image', 'created_at',
+            'date', 'montant', 'nb_beneficiaires', 'image', 'video_url', 'created_at',
         ]
-
 
 class DonSerializer(serializers.ModelSerializer):
     class Meta:

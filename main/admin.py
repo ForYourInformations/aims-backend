@@ -3,9 +3,26 @@ from .models import Action, Don, Contact, MembreBureau, BilanAnnuel, Actualite
 
 @admin.register(Action)
 class ActionAdmin(admin.ModelAdmin):
-    list_display = ['titre', 'categorie', 'date', 'montant', 'nb_beneficiaires']
+    list_display = ['titre', 'categorie', 'date', 'montant', 'nb_beneficiaires', 'a_une_video']
     list_filter = ['categorie']
     search_fields = ['titre']
+    fieldsets = (
+        ('Informations principales', {
+            'fields': ('titre', 'categorie', 'date', 'description')
+        }),
+        ('Details', {
+            'fields': ('montant', 'nb_beneficiaires', 'image')
+        }),
+        ('Video YouTube (optionnel)', {
+            'fields': ('video_url',),
+            'description': 'Filmez avec votre telephone, uploadez sur YouTube, puis collez le lien ici.'
+        }),
+    )
+
+    def a_une_video(self, obj):
+        return bool(obj.video_url)
+    a_une_video.boolean = True
+    a_une_video.short_description = 'Video'
 
 @admin.register(Don)
 class DonAdmin(admin.ModelAdmin):

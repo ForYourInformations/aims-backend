@@ -18,6 +18,10 @@ class Action(models.Model):
     nb_beneficiaires = models.IntegerField(null=True, blank=True)
     image = models.ImageField(upload_to='actions/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    video_url = models.URLField(
+        blank=True, null=True,
+        help_text="Collez ici le lien YouTube de la video (exemple: https://www.youtube.com/watch?v=XXXXXXXXX)"
+    )
 
     class Meta:
         ordering = ['-date']
@@ -120,9 +124,10 @@ class Actualite(models.Model):
     image = models.ImageField(upload_to='actualites/', null=True, blank=True)
     publie = models.BooleanField(default=True)
     video_url = models.URLField(
-    blank=True, null=True,
-    help_text="Collez ici le lien YouTube de la video (exemple: https://www.youtube.com/watch?v=XXXXXXXXX)"
-)
+        blank=True, null=True,
+        help_text="Collez ici le lien YouTube de la video (exemple: https://www.youtube.com/watch?v=XXXXXXXXX)"
+    )
+
     class Meta:
         ordering = ['-date']
 
