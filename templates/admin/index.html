@@ -8,7 +8,7 @@
       <div class="app-{{ app.app_label }} module">
         <table>
           <caption>
-            <a href="{{ app.app_url }}" class="section" title="{% blocktranslate with name=app.name %}Models in the {{ name }} application{% endblocktranslate %}">{{ app.name }}</a>
+            <a href="{{ app.app_url }}" class="section">{{ app.name }}</a>
           </caption>
           {% for model in app.models %}
             <tr class="model-{{ model.object_name|lower }}">
@@ -33,7 +33,9 @@
       </div>
     {% endfor %}
   {% else %}
-    <p>{% translate "You don't have permission to view or edit anything." %}</p>
+    <p>{% translate "Vous n'avez pas la permission de voir ou modifier quoi que ce soit." %}</p>
   {% endif %}
 </div>
 {% endblock %}
+
+{% block sidebar %}{% endblock %}
