@@ -3,39 +3,37 @@
 
 {% block content %}
 <div id="content-main">
-  {% if app_list %}
-    {% for app in app_list %}
-      <div class="app-{{ app.app_label }} module">
-        <table>
-          <caption>
-            <a href="{{ app.app_url }}" class="section">{{ app.name }}</a>
-          </caption>
-          {% for model in app.models %}
-            <tr class="model-{{ model.object_name|lower }}">
-              {% if model.admin_url %}
-                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
-              {% else %}
-                <th scope="row">{{ model.name }}</th>
-              {% endif %}
-              {% if model.add_url %}
-                <td><a href="{{ model.add_url }}" class="addlink">{% translate 'Ajouter' %}</a></td>
-              {% else %}
-                <td>&nbsp;</td>
-              {% endif %}
-              {% if model.admin_url %}
-                <td><a href="{{ model.admin_url }}" class="changelink">{% translate 'Modification' %}</a></td>
-              {% else %}
-                <td>&nbsp;</td>
-              {% endif %}
-            </tr>
-          {% endfor %}
-        </table>
-      </div>
-    {% endfor %}
-  {% else %}
-    <p>{% translate "Vous n'avez pas la permission de voir ou modifier quoi que ce soit." %}</p>
-  {% endif %}
+  {% include "admin/app_index_item.html" with collapse=True only %}
+  {% for app in app_list %}
+  <div class="app-{{ app.app_label }} module{% if app.app_url in request.path|urlencode %} current-app{% endif %}">
+    <table>
+      <caption>
+        <a href="{{ app.app_url }}" class="section" title="{% blocktranslate with name=app.name %}Models in the {{ name }} application{% endblocktranslate %}">{{ app.name }}</a>
+      </caption>
+      {% for model in app.models %}
+      <tr class="model-{{ model.object_name|lower }}{% if model.admin_url in request.path|urlencode %} current-model{% endif %}">
+        {% if model.admin_url %}
+        <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+        {% else %}
+        <th scope="row">{{ model.name }}</th>
+        {% endif %}
+        <td>
+          {% if model.add_url %}
+          <a href="{{ model.add_url }}" class="addlink">{% translate 'Ajouter' %}</a>
+          {% endif %}
+        </td>
+        <td>
+          {% if model.admin_url %}
+          <a href="{{ model.admin_url }}" class="changelink">{% translate 'Modification' %}</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}
 
 {% block sidebar %}{% endblock %}
+{% block recent_actions %}{% endblock %}
