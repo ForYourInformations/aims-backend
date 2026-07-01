@@ -41,7 +41,10 @@ class MembreBureauSerializer(serializers.ModelSerializer):
     class Meta:
         model = MembreBureau
         fields = ['id', 'nom', 'role', 'role_label', 'email', 'telephone', 'photo', 'ordre']
-
+        extra_kwargs = {
+            'email':     {'write_only': True},
+            'telephone': {'write_only': True},
+        }
 
 class BilanAnnuelSerializer(serializers.ModelSerializer):
     total_recettes = serializers.FloatField(read_only=True)
