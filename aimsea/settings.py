@@ -95,3 +95,4 @@ CSRF_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = False  # a activer uniquement sur le domaine definitif de l'association
+SITE_URL = os.environ.get("SITE_URL", "https://samtest-9ee996fa.netlify.app")
