@@ -10,6 +10,7 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY doit être définie en production")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
+    "aims-backend-c0t5.onrender.com",
     "aims-backend-production-c90c.up.railway.app",
     "localhost",
     "127.0.0.1",
@@ -85,6 +86,7 @@ REST_FRAMEWORK = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://aims-backend-c0t5.onrender.com",
     "https://aims-backend-production-c90c.up.railway.app",
 ]
 # Sécurité production — Railway est derrière un proxy TLS
