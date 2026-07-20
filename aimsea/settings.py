@@ -98,3 +98,11 @@ SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = False  # a activer uniquement sur le domaine definitif de l'association
 SITE_URL = os.environ.get("SITE_URL", "https://samtest-9ee996fa.netlify.app")
+# ── Email via Brevo SMTP ──
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-relay.brevo.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'b2a5d6001@smtp-brevo.com'
+EMAIL_HOST_PASSWORD = os.environ.get('BREVO_SMTP_KEY')
+DEFAULT_FROM_EMAIL = 'AIMSEA-DENKO <aimsea.denko1@gmail.com>'
