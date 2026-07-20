@@ -1,0 +1,352 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Rw9GnFvSw7eapQ8ooTEAPc$M9Cs1RmIYljzjKBP3JbqcKnDqjM5DiVD8mxfU0A0Wnw=",
+    "last_login": "2026-06-30T13:26:24.970Z",
+    "is_superuser": true,
+    "username": "lakhdars",
+    "first_name": "",
+    "last_name": "",
+    "email": "lakhdhar.sameh@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-06-29T17:15:53.422Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "main.action",
+  "pk": 1,
+  "fields": {
+    "titre": "7eme Fete Annuelle AIMSEA 2025",
+    "description": "Fete annuelle pro-fonds. Benefice : 1135 EUR.",
+    "categorie": "fete",
+    "date": "2025-02-19",
+    "montant": "1135.25",
+    "nb_beneficiaires": 50,
+    "image": "",
+    "created_at": "2026-06-29T17:14:40.292Z",
+    "video_url": null
+  }
+},
+{
+  "model": "main.action",
+  "pk": 2,
+  "fields": {
+    "titre": "Distribution AIT 2025",
+    "description": "Distribution alimentaire a 150 enfants albinos a Conakry.",
+    "categorie": "alimentaire",
+    "date": "2025-03-27",
+    "montant": "1500.00",
+    "nb_beneficiaires": 150,
+    "image": "",
+    "created_at": "2026-06-29T17:14:40.300Z",
+    "video_url": null
+  }
+},
+{
+  "model": "main.action",
+  "pk": 3,
+  "fields": {
+    "titre": "Rentree Scolaire 2025-2026",
+    "description": "Fournitures scolaires pour 175 enfants albinos a Conakry.",
+    "categorie": "scolaire",
+    "date": "2025-10-01",
+    "montant": "2260.00",
+    "nb_beneficiaires": 175,
+    "image": "",
+    "created_at": "2026-06-29T17:14:40.307Z",
+    "video_url": null
+  }
+},
+{
+  "model": "main.action",
+  "pk": 4,
+  "fields": {
+    "titre": "Sensibilisation TV en Guinee",
+    "description": "Participation a 3 emissions televisees sur la Television Guineenne.",
+    "categorie": "sensibilisation",
+    "date": "2025-02-19",
+    "montant": null,
+    "nb_beneficiaires": null,
+    "image": "",
+    "created_at": "2026-06-29T17:14:40.315Z",
+    "video_url": null
+  }
+},
+{
+  "model": "main.contact",
+  "pk": 1,
+  "fields": {
+    "nom": "sam",
+    "email": "lakhdhar.sameh@gmail.com",
+    "sujet": "test d envoi de message vers contact (administration)",
+    "message": "test d envoi de message vers contact (administration)",
+    "date": "2026-07-03T10:06:35.119Z",
+    "traite": false
+  }
+},
+{
+  "model": "main.membrebureau",
+  "pk": 1,
+  "fields": {
+    "nom": "Mme SIMANKA Nansira",
+    "role": "presidente",
+    "email": "simanka.nasira@yahoo.fr",
+    "telephone": "06 24 82 08 38",
+    "photo": "",
+    "ordre": 1
+  }
+},
+{
+  "model": "main.membrebureau",
+  "pk": 2,
+  "fields": {
+    "nom": "Mme SYLLA Aicha",
+    "role": "vice_presidente",
+    "email": "aichasyllakoundia@gmail.com",
+    "telephone": "",
+    "photo": "",
+    "ordre": 2
+  }
+},
+{
+  "model": "main.membrebureau",
+  "pk": 3,
+  "fields": {
+    "nom": "Mme RIOU Marie Jose",
+    "role": "secretaire",
+    "email": "mjriou@hotmail.fr",
+    "telephone": "06 66 94 96 15",
+    "photo": "",
+    "ordre": 3
+  }
+},
+{
+  "model": "main.membrebureau",
+  "pk": 4,
+  "fields": {
+    "nom": "M. BERETE Sory",
+    "role": "secretaire_adjoint",
+    "email": "brtsory@gmail.com",
+    "telephone": "",
+    "photo": "",
+    "ordre": 4
+  }
+},
+{
+  "model": "main.membrebureau",
+  "pk": 5,
+  "fields": {
+    "nom": "Mme DIALLO WELLE Mariam",
+    "role": "tresoriere",
+    "email": "mariamdiallo10s@yahoo.fr",
+    "telephone": "",
+    "photo": "",
+    "ordre": 5
+  }
+},
+{
+  "model": "main.membrebureau",
+  "pk": 6,
+  "fields": {
+    "nom": "M. BERETE Mohamed",
+    "role": "charges_affaires",
+    "email": "mohamedbeeteer7@gmail.com",
+    "telephone": "",
+    "photo": "",
+    "ordre": 6
+  }
+},
+{
+  "model": "main.membrebureau",
+  "pk": 7,
+  "fields": {
+    "nom": "Mme DIABY Fatoumata",
+    "role": "charges_affaires_adj",
+    "email": "Fatoumatadiabygp@gmail.com",
+    "telephone": "",
+    "photo": "",
+    "ordre": 7
+  }
+},
+{
+  "model": "main.bilanannuel",
+  "pk": 1,
+  "fields": {
+    "annee": 2017,
+    "recettes_fete": "1248.00",
+    "recettes_dons": "500.00",
+    "depenses_ait": "400.00",
+    "depenses_scolaire": "800.00",
+    "solde_banque": "873.31",
+    "solde_caisse": "0.00",
+    "nb_enfants_aides": 15
+  }
+},
+{
+  "model": "main.bilanannuel",
+  "pk": 2,
+  "fields": {
+    "annee": 2018,
+    "recettes_fete": "817.00",
+    "recettes_dons": "2150.00",
+    "depenses_ait": "1090.00",
+    "depenses_scolaire": "600.00",
+    "solde_banque": "1931.09",
+    "solde_caisse": "45.00",
+    "nb_enfants_aides": 0
+  }
+},
+{
+  "model": "main.bilanannuel",
+  "pk": 3,
+  "fields": {
+    "annee": 2019,
+    "recettes_fete": "0.00",
+    "recettes_dons": "2150.00",
+    "depenses_ait": "500.00",
+    "depenses_scolaire": "800.00",
+    "solde_banque": "2912.79",
+    "solde_caisse": "2245.00",
+    "nb_enfants_aides": 0
+  }
+},
+{
+  "model": "main.bilanannuel",
+  "pk": 4,
+  "fields": {
+    "annee": 2020,
+    "recettes_fete": "-270.00",
+    "recettes_dons": "2450.00",
+    "depenses_ait": "1400.00",
+    "depenses_scolaire": "1500.00",
+    "solde_banque": "2394.27",
+    "solde_caisse": "675.00",
+    "nb_enfants_aides": 0
+  }
+},
+{
+  "model": "main.bilanannuel",
+  "pk": 5,
+  "fields": {
+    "annee": 2021,
+    "recettes_fete": "0.00",
+    "recettes_dons": "2400.00",
+    "depenses_ait": "450.00",
+    "depenses_scolaire": "1000.00",
+    "solde_banque": "1746.27",
+    "solde_caisse": "67.00",
+    "nb_enfants_aides": 0
+  }
+},
+{
+  "model": "main.bilanannuel",
+  "pk": 6,
+  "fields": {
+    "annee": 2022,
+    "recettes_fete": "830.00",
+    "recettes_dons": "2000.00",
+    "depenses_ait": "1000.00",
+    "depenses_scolaire": "1500.00",
+    "solde_banque": "2406.22",
+    "solde_caisse": "505.00",
+    "nb_enfants_aides": 0
+  }
+},
+{
+  "model": "main.bilanannuel",
+  "pk": 7,
+  "fields": {
+    "annee": 2023,
+    "recettes_fete": "988.00",
+    "recettes_dons": "1600.00",
+    "depenses_ait": "1000.00",
+    "depenses_scolaire": "1600.00",
+    "solde_banque": "792.19",
+    "solde_caisse": "363.00",
+    "nb_enfants_aides": 0
+  }
+},
+{
+  "model": "main.bilanannuel",
+  "pk": 8,
+  "fields": {
+    "annee": 2024,
+    "recettes_fete": "1073.00",
+    "recettes_dons": "3100.00",
+    "depenses_ait": "1150.00",
+    "depenses_scolaire": "2250.00",
+    "solde_banque": "1194.75",
+    "solde_caisse": "94.00",
+    "nb_enfants_aides": 150
+  }
+},
+{
+  "model": "main.bilanannuel",
+  "pk": 9,
+  "fields": {
+    "annee": 2025,
+    "recettes_fete": "1135.00",
+    "recettes_dons": "3600.00",
+    "depenses_ait": "1500.00",
+    "depenses_scolaire": "2260.00",
+    "solde_banque": "1079.62",
+    "solde_caisse": "144.00",
+    "nb_enfants_aides": 175
+  }
+},
+{
+  "model": "main.bilanannuel",
+  "pk": 10,
+  "fields": {
+    "annee": 2026,
+    "recettes_fete": "2040.00",
+    "recettes_dons": "0.00",
+    "depenses_ait": "0.00",
+    "depenses_scolaire": "0.00",
+    "solde_banque": "0.00",
+    "solde_caisse": "0.00",
+    "nb_enfants_aides": 0
+  }
+},
+{
+  "model": "main.actualite",
+  "pk": 1,
+  "fields": {
+    "titre": "AGO du 18 avril 2026",
+    "contenu": "Bilan 2025 approuve a l unanimite. Bureau reconduit pour 2026.",
+    "date": "2026-04-18",
+    "image": "",
+    "publie": true,
+    "video_url": null
+  }
+},
+{
+  "model": "main.actualite",
+  "pk": 2,
+  "fields": {
+    "titre": "175 enfants aides en 2025",
+    "contenu": "175 enfants albinos ont recu des fournitures scolaires pour la rentree 2025-2026.",
+    "date": "2025-10-15",
+    "image": "",
+    "publie": true,
+    "video_url": null
+  }
+},
+{
+  "model": "main.actualite",
+  "pk": 3,
+  "fields": {
+    "titre": "7eme fete : succes !",
+    "contenu": "La fete du 19 fevrier 2025 a reuni 50 personnes et collecte 3700 EUR de dons.",
+    "date": "2025-02-20",
+    "image": "",
+    "publie": true,
+    "video_url": null
+  }
+}
+]

@@ -114,7 +114,7 @@ class BilanAnnuel(models.Model):
 
     @property
     def total_avoirs(self):
-        return float(self.solde_banque) + float(self.solde_caisse)
+        return float(self.solde_banque)
 
 
 class Actualite(models.Model):
