@@ -57,7 +57,7 @@
   "model": "main.action",
   "pk": 1,
   "fields": {
-    "titre": "7eme Fete Annuelle AIMSEA 2025",
+    "titre": "Fête annuelle AIMSEA 2025",
     "description": "Fete annuelle pro-fonds. Benefice : 1135 EUR.",
     "categorie": "fete",
     "date": "2025-02-19",
@@ -103,7 +103,7 @@
   "pk": 4,
   "fields": {
     "titre": "Sensibilisation TV en Guinee",
-    "description": "Participation a 3 emissions televisees sur la Television Guineenne.",
+    "description": "Participation à 3 emissions televisees sur la Television Guineenne.",
     "categorie": "sensibilisation",
     "date": "2025-02-19",
     "montant": null,

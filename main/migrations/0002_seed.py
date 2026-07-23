@@ -42,7 +42,7 @@ def seed(apps, schema_editor):
         ))
 
     actions = [
-        ('7eme Fete Annuelle AIMSEA 2025',
+        ('Fête annuelle AIMSEA 2025',
          'Fete annuelle pro-fonds. Benefice : 1135 EUR.',
          'fete', date(2025,2,19), 1135.25, 50),
         ('Distribution AIT 2025',
@@ -52,7 +52,7 @@ def seed(apps, schema_editor):
          'Fournitures scolaires pour 175 enfants albinos a Conakry.',
          'scolaire', date(2025,10,1), 2260, 175),
         ('Sensibilisation TV en Guinee',
-         'Participation a 3 emissions televisees sur la Television Guineenne.',
+         'Participation à 3 emissions televisees sur la Television Guineenne.',
          'sensibilisation', date(2025,2,19), None, None),
     ]
     for titre,desc,cat,d,montant,ben in actions:

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Action, Don, Contact, MembreBureau, BilanAnnuel, Actualite
+from .models import Action, Don, Contact, MembreBureau, BilanAnnuel, Actualite, Configuration
 
 
 class ActionSerializer(serializers.ModelSerializer):
@@ -68,3 +68,10 @@ class ActualiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Actualite
         fields = ['id', 'titre', 'contenu', 'date', 'image', 'video_url', 'publie']
+
+
+
+class ConfigurationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Configuration
+        fields = ['cle', 'valeur']

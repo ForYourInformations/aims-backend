@@ -1,6 +1,10 @@
 from django.contrib import admin
-from .models import Action, Don, Contact, MembreBureau, BilanAnnuel, Actualite
 from django.conf import settings
+from .models import Action, Don, Contact, MembreBureau, BilanAnnuel, Actualite, Configuration
+
+@admin.register(Configuration)
+class ConfigurationAdmin(admin.ModelAdmin):
+    list_display = ['cle', 'valeur', 'description']
 
 admin.site.site_header = "Administration AIMSEA-DENKO"
 admin.site.site_title  = "AIMSEA Admin"

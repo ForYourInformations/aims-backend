@@ -2,11 +2,13 @@ from rest_framework import viewsets, status, filters
 from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Action, Don, Contact, MembreBureau, BilanAnnuel, Actualite
-from .serializers import (
-    ActionSerializer, DonSerializer, ContactSerializer,
-    MembreBureauSerializer, BilanAnnuelSerializer, ActualiteSerializer,
-)
+from .models import Action, Don, Contact, MembreBureau, BilanAnnuel, Actualite, Configuration
+from .serializers import ActionSerializer, DonSerializer, ContactSerializer, MembreBureauSerializer, BilanAnnuelSerializer, ActualiteSerializer, ConfigurationSerializer
+
+class ConfigurationViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Configuration.objects.all()
+    serializer_class = ConfigurationSerializer
+    lookup_field = 'cle'
 
 
 # ── Actions ───────────────────────────────────────────────────────────────────

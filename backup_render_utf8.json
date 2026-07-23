@@ -1,10 +1,75 @@
 [
 {
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "SecrÚtaire",
+    "permissions": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      36,
+      40,
+      44,
+      45,
+      46,
+      47,
+      48
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 2,
+  "fields": {
+    "name": "TrÚsorier",
+    "permissions": [
+      33,
+      34,
+      35,
+      36,
+      44
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 3,
+  "fields": {
+    "name": "Admin",
+    "permissions": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      40,
+      44,
+      45,
+      46,
+      47,
+      48
+    ]
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$1000000$Rw9GnFvSw7eapQ8ooTEAPc$M9Cs1RmIYljzjKBP3JbqcKnDqjM5DiVD8mxfU0A0Wnw=",
-    "last_login": "2026-06-30T13:26:24.970Z",
+    "last_login": "2026-07-20T17:04:36.520Z",
     "is_superuser": true,
     "username": "lakhdars",
     "first_name": "",
@@ -14,6 +79,126 @@
     "is_active": true,
     "date_joined": "2026-06-29T17:15:53.422Z",
     "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$5wgIVag0mMdVZD6zq5fx2L$7nl95xsoKwYmGg+h9P1ZIHpLK+aP2RVhiHhH4OD8weQ=",
+    "last_login": "2026-07-20T15:24:51.380Z",
+    "is_superuser": false,
+    "username": "mariamdiallo10s@yahoo.fr",
+    "first_name": "Mariam",
+    "last_name": "DIALLO WELLE",
+    "email": "mariamdiallo10s@yahoo.fr",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-20T14:23:34Z",
+    "groups": [
+      2
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$4arhlVXCyW5mZaKuYbhJkT$xnjCVTfHqnK1fzsHMR1fbnBiXvuMd/3mmbrRHROnxeU=",
+    "last_login": "2026-07-20T15:08:24Z",
+    "is_superuser": false,
+    "username": "simanka.nasira@yahoo.fr",
+    "first_name": "Nassira",
+    "last_name": "simanka",
+    "email": "simanka.nasira@yahoo.fr",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-20T14:31:48Z",
+    "groups": [
+      3
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$KWfQDrsCRbNEyu2CBW1fUW$q62hILPRR+KCRg/oSCoPIgYTLILgGcKtW6o9z1iPBW4=",
+    "last_login": "2026-07-20T15:18:32.364Z",
+    "is_superuser": false,
+    "username": "mjriou@hotmail.fr",
+    "first_name": "Marie-JosÚ",
+    "last_name": "Riou",
+    "email": "mjriou@hotmail.fr",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-20T14:37:59Z",
+    "groups": [
+      1
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$v6fC9Y0F1ypYFQ0BX1rnGD$RLcVBtsszotqemlWZHgwac2IEmfsuOd+wuyCFXJ3Z7s=",
+    "last_login": "2026-07-20T14:59:12Z",
+    "is_superuser": false,
+    "username": "brtsory@gmail.com",
+    "first_name": "Sory",
+    "last_name": "Berete",
+    "email": "brtsory@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-20T14:39:48Z",
+    "groups": [
+      1
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$udehphJfT3YYfqQvqCWCWA$zHm0i0n1tP8IjYgPkxOoqf8DBcjoxt5rb/Oz5O+qRE4=",
+    "last_login": "2026-07-20T16:13:38.336Z",
+    "is_superuser": false,
+    "username": "sameh",
+    "first_name": "sameh",
+    "last_name": "test",
+    "email": "samehlakhdhar.st@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-20T16:11:45Z",
+    "groups": [
+      3
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$wsKsr75JzhuPn6SJYSvPSE$X6BMb8mHKCd2QUU0KknWKG6LbZEdSFKcWtgx3jw/qJo=",
+    "last_login": "2026-07-20T16:45:23.105Z",
+    "is_superuser": false,
+    "username": "toujeni",
+    "first_name": "",
+    "last_name": "",
+    "email": "toujeniahlem1@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-20T16:44:10Z",
+    "groups": [
+      3
+    ],
     "user_permissions": []
   }
 },
@@ -297,20 +482,6 @@
     "solde_banque": "1079.62",
     "solde_caisse": "144.00",
     "nb_enfants_aides": 175
-  }
-},
-{
-  "model": "main.bilanannuel",
-  "pk": 10,
-  "fields": {
-    "annee": 2026,
-    "recettes_fete": "2040.00",
-    "recettes_dons": "0.00",
-    "depenses_ait": "0.00",
-    "depenses_scolaire": "0.00",
-    "solde_banque": "0.00",
-    "solde_caisse": "0.00",
-    "nb_enfants_aides": 0
   }
 },
 {

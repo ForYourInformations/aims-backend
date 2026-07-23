@@ -133,3 +133,16 @@ class Actualite(models.Model):
 
     def __str__(self):
         return self.titre
+
+
+class Configuration(models.Model):
+    cle = models.CharField(max_length=100, unique=True)
+    valeur = models.TextField()
+    description = models.CharField(max_length=200, blank=True)
+
+    class Meta:
+        verbose_name = "Configuration"
+        verbose_name_plural = "Configurations"
+
+    def __str__(self):
+        return self.cle

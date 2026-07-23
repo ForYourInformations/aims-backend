@@ -2,14 +2,14 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
 
-# Le router génère automatiquement toutes les URLs REST
 router = DefaultRouter()
-router.register(r'actions',    views.ActionViewSet,      basename='action')
-router.register(r'dons',       views.DonViewSet,         basename='don')
-router.register(r'contacts',   views.ContactViewSet,     basename='contact')
+router.register(r'actions',    views.ActionViewSet,       basename='action')
+router.register(r'dons',       views.DonViewSet,          basename='don')
+router.register(r'contacts',   views.ContactViewSet,      basename='contact')
 router.register(r'bureau',     views.MembreBureauViewSet, basename='bureau')
-router.register(r'bilans',     views.BilanAnnuelViewSet, basename='bilan')
-router.register(r'actualites', views.ActualiteViewSet,   basename='actualite')
+router.register(r'bilans',     views.BilanAnnuelViewSet,  basename='bilan')
+router.register(r'actualites', views.ActualiteViewSet,    basename='actualite')
+router.register(r'config',     views.ConfigurationViewSet, basename='config')
 
 urlpatterns = [
     path('', include(router.urls)),
