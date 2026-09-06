@@ -10,14 +10,25 @@ class LogEntryAdmin(admin.ModelAdmin):
     search_fields = ['user__username', 'object_repr']
     readonly_fields = ['action_time', 'user', 'content_type', 'object_id', 'object_repr', 'action_flag', 'change_message']
 
+    def has_module_perms(self, request):
+        return request.user.is_superuser
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.exclude(user__username='lakhdars')
+
     def has_add_permission(self, request):
         return False
 
     def has_delete_permission(self, request, obj=None):
         return False
+
 @admin.register(Configuration)
 class ConfigurationAdmin(admin.ModelAdmin):
     list_display = ['cle', 'valeur', 'description']
+
+    def has_module_perms(self, request):
+        return request.user.is_superuser
 
 admin.site.site_header = "Administration AIMSEA-DENKO"
 admin.site.site_title  = "AIMSEA Admin"
@@ -28,18 +39,24 @@ class ActionAdmin(admin.ModelAdmin):
     list_display = ['titre', 'categorie', 'date', 'montant', 'nb_beneficiaires', 'a_une_video']
     list_filter = ['categorie']
     search_fields = ['titre']
-    fieldsets = (
-        ('Informations principales', {
-            'fields': ('titre', 'categorie', 'date', 'description')
-        }),
-        ('Details', {
-            'fields': ('montant', 'nb_beneficiaires', 'image')
-        }),
-        ('Video YouTube (optionnel)', {
-            'fields': ('video_url',),
-            'description': 'Filmez avec votre telephone, uploadez sur YouTube, puis collez le lien ici.'
-        }),
-    )
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = [
+            ('Informations principales', {
+                'fields': ('titre', 'categorie', 'date', 'description')
+            }),
+            ('Details', {
+                'fields': ('montant', 'nb_beneficiaires', 'image')
+            }),
+        ]
+        if request.user.is_superuser:
+            fieldsets.append((
+                'Video YouTube (optionnel)', {
+                    'fields': ('video_url',),
+                    'description': 'Filmez avec votre telephone, uploadez sur YouTube, puis collez le lien ici.'
+                }
+            ))
+        return fieldsets
 
     def a_une_video(self, obj):
         return bool(obj.video_url)
@@ -67,13 +84,13 @@ class BilanAnnuelAdmin(admin.ModelAdmin):
 
     def get_recettes(self, obj): return f"{obj.total_recettes}€"
     get_recettes.short_description = "Recettes"
-    
+
     def get_depenses(self, obj): return f"{obj.total_depenses}€"
     get_depenses.short_description = "Dépenses"
-    
+
     def get_bilan(self, obj): return f"{obj.bilan}€"
     get_bilan.short_description = "Bilan"
-    
+
     def get_avoirs(self, obj): return f"{obj.total_avoirs}€"
     get_avoirs.short_description = "Avoirs"
 
@@ -81,23 +98,29 @@ class BilanAnnuelAdmin(admin.ModelAdmin):
 class ActualiteAdmin(admin.ModelAdmin):
     list_display = ['titre', 'date', 'publie', 'a_une_video']
     list_editable = ['publie']
-    fieldsets = (
-        ('Contenu de l\'actualite', {
-            'fields': ('titre', 'date', 'contenu')
-        }),
-        ('Photo (optionnel)', {
-            'fields': ('image',)
-        }),
-        ('Video YouTube (optionnel)', {
-            'fields': ('video_url',),
-            'description': 'Filmez avec votre telephone, uploadez la video sur YouTube, '
-                            'puis collez le lien ici. Le site affichera la video automatiquement.'
-        }),
-        ('Publication', {
-            'fields': ('publie',),
-            'description': 'Cochez cette case quand l\'actualite est prete a etre visible sur le site.'
-        }),
-    )
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = [
+            ('Contenu de l\'actualite', {
+                'fields': ('titre', 'date', 'contenu')
+            }),
+            ('Photo (optionnel)', {
+                'fields': ('image',)
+            }),
+            ('Publication', {
+                'fields': ('publie',),
+                'description': 'Cochez cette case quand l\'actualite est prete a etre visible sur le site.'
+            }),
+        ]
+        if request.user.is_superuser:
+            fieldsets.append((
+                'Video YouTube (optionnel)', {
+                    'fields': ('video_url',),
+                    'description': 'Filmez avec votre telephone, uploadez la video sur YouTube, '
+                                   'puis collez le lien ici. Le site affichera la video automatiquement.'
+                }
+            ))
+        return fieldsets
 
     def a_une_video(self, obj):
         return bool(obj.video_url)
