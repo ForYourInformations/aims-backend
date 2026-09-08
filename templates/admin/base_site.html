@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+
+{% block extrahead %}
+{{ block.super }}
+{% if not request.user.is_superuser %}
+<style>
+  .historylink { display: none !important; }
+</style>
+{% endif %}
+{% endblock %}
