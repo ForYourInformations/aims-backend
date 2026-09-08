@@ -1,7 +1,17 @@
 from django.contrib import admin
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from .models import Action, Don, Contact, MembreBureau, BilanAnnuel, Actualite, Configuration
 from django.contrib.admin.models import LogEntry
+
+
+class HideHistoryMixin:
+    """Cache le bouton Historique aux non-superadmins et masque les actions de lakhdars"""
+    def history_view(self, request, object_id, extra_context=None):
+        if not request.user.is_superuser:
+            raise PermissionDenied
+        return super().history_view(request, object_id, extra_context)
+
 
 @admin.register(LogEntry)
 class LogEntryAdmin(admin.ModelAdmin):
@@ -23,6 +33,7 @@ class LogEntryAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+
 @admin.register(Configuration)
 class ConfigurationAdmin(admin.ModelAdmin):
     list_display = ['cle', 'valeur', 'description']
@@ -30,12 +41,14 @@ class ConfigurationAdmin(admin.ModelAdmin):
     def has_module_perms(self, request):
         return request.user.is_superuser
 
+
 admin.site.site_header = "Administration AIMSEA-DENKO"
 admin.site.site_title  = "AIMSEA Admin"
 admin.site.site_url    = settings.SITE_URL
 
+
 @admin.register(Action)
-class ActionAdmin(admin.ModelAdmin):
+class ActionAdmin(HideHistoryMixin, admin.ModelAdmin):
     list_display = ['titre', 'categorie', 'date', 'montant', 'nb_beneficiaires', 'a_une_video']
     list_filter = ['categorie']
     search_fields = ['titre']
@@ -63,23 +76,27 @@ class ActionAdmin(admin.ModelAdmin):
     a_une_video.boolean = True
     a_une_video.short_description = 'Video'
 
+
 @admin.register(Don)
-class DonAdmin(admin.ModelAdmin):
+class DonAdmin(HideHistoryMixin, admin.ModelAdmin):
     list_display = ['nom_donateur', 'montant', 'date', 'anonyme']
     list_filter = ['anonyme']
 
+
 @admin.register(Contact)
-class ContactAdmin(admin.ModelAdmin):
+class ContactAdmin(HideHistoryMixin, admin.ModelAdmin):
     list_display = ['nom', 'email', 'sujet', 'date', 'traite']
     list_editable = ['traite']
 
+
 @admin.register(MembreBureau)
-class MembreBureauAdmin(admin.ModelAdmin):
+class MembreBureauAdmin(HideHistoryMixin, admin.ModelAdmin):
     list_display = ['nom', 'role', 'ordre']
     list_editable = ['ordre']
 
+
 @admin.register(BilanAnnuel)
-class BilanAnnuelAdmin(admin.ModelAdmin):
+class BilanAnnuelAdmin(HideHistoryMixin, admin.ModelAdmin):
     list_display = ['annee', 'get_recettes', 'get_depenses', 'get_bilan', 'get_avoirs']
 
     def get_recettes(self, obj): return f"{obj.total_recettes}€"
@@ -94,8 +111,9 @@ class BilanAnnuelAdmin(admin.ModelAdmin):
     def get_avoirs(self, obj): return f"{obj.total_avoirs}€"
     get_avoirs.short_description = "Avoirs"
 
+
 @admin.register(Actualite)
-class ActualiteAdmin(admin.ModelAdmin):
+class ActualiteAdmin(HideHistoryMixin, admin.ModelAdmin):
     list_display = ['titre', 'date', 'publie', 'a_une_video']
     list_editable = ['publie']
 
