@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "django_filters",
+    "storages",
     "main",
 ]
 
@@ -61,9 +62,47 @@ DATABASES = {
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# ── Stockage des fichiers (photos, futures videos) ──
+# Par defaut, Django ecrit les fichiers uploades sur le disque du serveur.
+# Sur Render, ce disque est reinitialise a chaque redeploiement : tout fichier
+# uploade via l'admin (photo d'une action, d'un membre du bureau...) disparait
+# au push de code suivant. USE_SUPABASE_STORAGE bascule vers Supabase Storage
+# (meme projet que la base de donnees), qui lui est persistant.
+USE_SUPABASE_STORAGE = os.environ.get("USE_SUPABASE_STORAGE", "False") == "True"
+
+if USE_SUPABASE_STORAGE:
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "access_key": os.environ.get("SUPABASE_S3_ACCESS_KEY"),
+                "secret_key": os.environ.get("SUPABASE_S3_SECRET_KEY"),
+                "bucket_name": os.environ.get("SUPABASE_S3_BUCKET", "media"),
+                "endpoint_url": os.environ.get("SUPABASE_S3_ENDPOINT"),
+                "region_name": os.environ.get("SUPABASE_S3_REGION", "eu-central-1"),
+                "addressing_style": "path",
+                "default_acl": None,
+                "querystring_auth": False,
+                "file_overwrite": False,
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
+else:
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
+
 LANGUAGE_CODE = "fr-fr"
 TIME_ZONE = "Europe/Paris"
 USE_I18N = True
