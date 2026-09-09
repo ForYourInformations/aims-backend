@@ -64,15 +64,16 @@ class ActionAdmin(HideHistoryMixin, admin.ModelAdmin):
         ]
         if request.user.is_superuser:
             fieldsets.append((
-                'Video YouTube (optionnel)', {
-                    'fields': ('video_url',),
-                    'description': 'Filmez avec votre telephone, uploadez sur YouTube, puis collez le lien ici.'
+                'Video (optionnel)', {
+                    'fields': ('video_url', 'video_file'),
+                    'description': 'Deux options : collez un lien YouTube, OU envoyez directement le fichier video '
+                                   '(le fichier envoye est prioritaire si les deux sont remplis).'
                 }
             ))
         return fieldsets
 
     def a_une_video(self, obj):
-        return bool(obj.video_url)
+        return bool(obj.video_url or obj.video_file)
     a_une_video.boolean = True
     a_une_video.short_description = 'Video'
 
@@ -132,15 +133,16 @@ class ActualiteAdmin(HideHistoryMixin, admin.ModelAdmin):
         ]
         if request.user.is_superuser:
             fieldsets.append((
-                'Video YouTube (optionnel)', {
-                    'fields': ('video_url',),
-                    'description': 'Filmez avec votre telephone, uploadez la video sur YouTube, '
-                                   'puis collez le lien ici. Le site affichera la video automatiquement.'
+                'Video (optionnel)', {
+                    'fields': ('video_url', 'video_file'),
+                    'description': 'Deux options : collez un lien YouTube, OU envoyez directement le fichier video '
+                                   '(le fichier envoye est prioritaire si les deux sont remplis). '
+                                   'Le site affichera la video automatiquement.'
                 }
             ))
         return fieldsets
 
     def a_une_video(self, obj):
-        return bool(obj.video_url)
+        return bool(obj.video_url or obj.video_file)
     a_une_video.boolean = True
     a_une_video.short_description = 'Video'

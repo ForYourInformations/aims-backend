@@ -22,6 +22,10 @@ class Action(models.Model):
         blank=True, null=True,
         help_text="Collez ici le lien YouTube de la video (exemple: https://www.youtube.com/watch?v=XXXXXXXXX)"
     )
+    video_file = models.FileField(
+        upload_to='videos/', null=True, blank=True,
+        help_text="Ou envoyez directement un fichier video (prioritaire sur le lien YouTube si les deux sont remplis)."
+    )
 
     class Meta:
         ordering = ['-date']
@@ -69,6 +73,7 @@ class MembreBureau(models.Model):
         ('tresoriere', 'Trésorière'),
         ('charges_affaires', "Chargé(e) d'affaires sociales"),
         ('charges_affaires_adj', "Chargé(e) d'affaires sociales adjoint(e)"),
+        ('collaborateur', 'Collaborateur'),
     ]
     nom = models.CharField(max_length=200)
     role = models.CharField(max_length=50, choices=ROLE_CHOICES)
@@ -126,6 +131,10 @@ class Actualite(models.Model):
     video_url = models.URLField(
         blank=True, null=True,
         help_text="Collez ici le lien YouTube de la video (exemple: https://www.youtube.com/watch?v=XXXXXXXXX)"
+    )
+    video_file = models.FileField(
+        upload_to='videos/', null=True, blank=True,
+        help_text="Ou envoyez directement un fichier video (prioritaire sur le lien YouTube si les deux sont remplis)."
     )
 
     class Meta:

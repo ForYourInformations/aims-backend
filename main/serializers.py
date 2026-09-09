@@ -9,7 +9,7 @@ class ActionSerializer(serializers.ModelSerializer):
         model = Action
         fields = [
             'id', 'titre', 'description', 'categorie', 'categorie_label',
-            'date', 'montant', 'nb_beneficiaires', 'image', 'video_url', 'created_at',
+            'date', 'montant', 'nb_beneficiaires', 'image', 'video_url', 'video_file', 'created_at',
         ]
 
 class DonSerializer(serializers.ModelSerializer):
@@ -67,7 +67,7 @@ class BilanAnnuelSerializer(serializers.ModelSerializer):
 class ActualiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Actualite
-        fields = ['id', 'titre', 'contenu', 'date', 'image', 'video_url', 'publie']
+        fields = ['id', 'titre', 'contenu', 'date', 'image', 'video_url', 'video_file', 'publie']
 
 
 
