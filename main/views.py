@@ -1,3 +1,4 @@
+from datetime import date
 from rest_framework import viewsets, status, filters
 from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
@@ -124,12 +125,16 @@ def home_data(request):
     bilans = BilanAnnuel.objects.all()[:5]
     membres = MembreBureau.objects.all()
 
+    ANNEE_FONDATION = 2016
+    dernier_bilan = BilanAnnuel.objects.filter(nb_enfants_aides__gt=0).order_by('-annee').first()
+
     return Response({
         'stats': {
-            'annees': 10,
-            'enfants_2025': 175,
-            'dons_guinee_2025': 3760,
-            'fetes': 7,
+            'annees': date.today().year - ANNEE_FONDATION,
+            'enfants_aides': dernier_bilan.nb_enfants_aides if dernier_bilan else 0,
+            'dons_guinee': float(dernier_bilan.total_depenses) if dernier_bilan else 0,
+            'annee_reference': dernier_bilan.annee if dernier_bilan else date.today().year,
+            'fetes': Action.objects.filter(categorie='fete').count(),
         },
         'actions_recentes': ActionSerializer(actions_recentes, many=True, context={'request': request}).data,
         'actualites_recentes': ActualiteSerializer(actualites_recentes, many=True, context={'request': request}).data,
