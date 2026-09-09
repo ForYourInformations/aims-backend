@@ -74,19 +74,31 @@ MEDIA_ROOT = BASE_DIR / "media"
 USE_SUPABASE_STORAGE = os.environ.get("USE_SUPABASE_STORAGE", "False") == "True"
 
 if USE_SUPABASE_STORAGE:
+    _supabase_endpoint = os.environ.get("SUPABASE_S3_ENDPOINT", "")
+    _supabase_project_ref = _supabase_endpoint.replace("https://", "").split(".")[0] if _supabase_endpoint else ""
+    _supabase_bucket = os.environ.get("SUPABASE_S3_BUCKET", "media")
+    # L'endpoint S3 (ci-dessus) sert aux operations (upload/liste/suppression).
+    # Il ne faut PAS l'utiliser pour les URLs publiques affichees dans le navigateur :
+    # Supabase sert les fichiers publics sur un chemin different (object/public/...).
+    _supabase_public_domain = (
+        f"{_supabase_project_ref}.supabase.co/storage/v1/object/public/{_supabase_bucket}"
+        if _supabase_project_ref else None
+    )
+
     STORAGES = {
         "default": {
             "BACKEND": "storages.backends.s3.S3Storage",
             "OPTIONS": {
                 "access_key": os.environ.get("SUPABASE_S3_ACCESS_KEY"),
                 "secret_key": os.environ.get("SUPABASE_S3_SECRET_KEY"),
-                "bucket_name": os.environ.get("SUPABASE_S3_BUCKET", "media"),
-                "endpoint_url": os.environ.get("SUPABASE_S3_ENDPOINT"),
+                "bucket_name": _supabase_bucket,
+                "endpoint_url": _supabase_endpoint,
                 "region_name": os.environ.get("SUPABASE_S3_REGION", "eu-central-1"),
                 "addressing_style": "path",
                 "default_acl": None,
                 "querystring_auth": False,
                 "file_overwrite": False,
+                "custom_domain": _supabase_public_domain,
             },
         },
         "staticfiles": {
