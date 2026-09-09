@@ -61,15 +61,12 @@ class ActionAdmin(HideHistoryMixin, admin.ModelAdmin):
             ('Details', {
                 'fields': ('montant', 'nb_beneficiaires', 'image')
             }),
+            ('Video (optionnel)', {
+                'fields': ('video_url', 'video_file'),
+                'description': 'Deux options : collez un lien YouTube, OU envoyez directement le fichier video '
+                               '(le fichier envoye est prioritaire si les deux sont remplis).'
+            }),
         ]
-        if request.user.is_superuser:
-            fieldsets.append((
-                'Video (optionnel)', {
-                    'fields': ('video_url', 'video_file'),
-                    'description': 'Deux options : collez un lien YouTube, OU envoyez directement le fichier video '
-                                   '(le fichier envoye est prioritaire si les deux sont remplis).'
-                }
-            ))
         return fieldsets
 
     def a_une_video(self, obj):
@@ -130,16 +127,13 @@ class ActualiteAdmin(HideHistoryMixin, admin.ModelAdmin):
                 'fields': ('publie',),
                 'description': 'Cochez cette case quand l\'actualite est prete a etre visible sur le site.'
             }),
+            ('Video (optionnel)', {
+                'fields': ('video_url', 'video_file'),
+                'description': 'Deux options : collez un lien YouTube, OU envoyez directement le fichier video '
+                               '(le fichier envoye est prioritaire si les deux sont remplis). '
+                               'Le site affichera la video automatiquement.'
+            }),
         ]
-        if request.user.is_superuser:
-            fieldsets.append((
-                'Video (optionnel)', {
-                    'fields': ('video_url', 'video_file'),
-                    'description': 'Deux options : collez un lien YouTube, OU envoyez directement le fichier video '
-                                   '(le fichier envoye est prioritaire si les deux sont remplis). '
-                                   'Le site affichera la video automatiquement.'
-                }
-            ))
         return fieldsets
 
     def a_une_video(self, obj):
