@@ -1,5 +1,17 @@
 from django.db import models
 from django.utils import timezone
+from django.core.exceptions import ValidationError
+
+
+VIDEO_MAX_SIZE_MO = 25
+
+def validate_video_size(fichier):
+    limite = VIDEO_MAX_SIZE_MO * 1024 * 1024
+    if fichier.size > limite:
+        raise ValidationError(
+            f"Cette video pese {fichier.size / 1024 / 1024:.1f} Mo, "
+            f"la limite est de {VIDEO_MAX_SIZE_MO} Mo. Compressez-la avant de l'envoyer."
+        )
 
 
 class Action(models.Model):
@@ -24,7 +36,9 @@ class Action(models.Model):
     )
     video_file = models.FileField(
         upload_to='videos/', null=True, blank=True,
-        help_text="Ou envoyez directement un fichier video (prioritaire sur le lien YouTube si les deux sont remplis)."
+        validators=[validate_video_size],
+        help_text=f"Ou envoyez directement un fichier video, {VIDEO_MAX_SIZE_MO} Mo maximum "
+                  "(prioritaire sur le lien YouTube si les deux sont remplis)."
     )
 
     class Meta:
@@ -134,7 +148,9 @@ class Actualite(models.Model):
     )
     video_file = models.FileField(
         upload_to='videos/', null=True, blank=True,
-        help_text="Ou envoyez directement un fichier video (prioritaire sur le lien YouTube si les deux sont remplis)."
+        validators=[validate_video_size],
+        help_text=f"Ou envoyez directement un fichier video, {VIDEO_MAX_SIZE_MO} Mo maximum "
+                  "(prioritaire sur le lien YouTube si les deux sont remplis)."
     )
 
     class Meta:
